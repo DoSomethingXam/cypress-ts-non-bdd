@@ -1,0 +1,8 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"strict": true,
+		"baseUrl": ".",
+		"types": ["@shelex/cypress-allure-plugin"]
+	}
+}

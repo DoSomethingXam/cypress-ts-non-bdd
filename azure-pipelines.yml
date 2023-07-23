@@ -1,0 +1,31 @@
+name: Cypress Non-BDD Framework
+trigger:
+  - main
+pool:
+  vmImage: 'ubuntu-20.04'
+stages:
+  - stage: install_and_run_test
+    condition: succeeded()
+    jobs:
+      - job: checkout_and_install_dependencies
+        steps:
+          - checkout: self
+            path: '$(Build.Repository.Name)'
+            clean: true
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '18.x'
+            displayName: 'Install Node.js'
+          - script: |
+              npm install -g yarn
+            displayName: 'Install Environment'
+          - script: |
+              ls
+            workingDirectory: '$(Build.SourcesDirectory)'
+            displayName: 'List Out Directory'
+          - script: |
+              yarn install -f
+            displayName: 'Install Dependencies'
+          - script: |
+              yarn cy:run
+            displayName: 'Run Test'

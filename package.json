@@ -1,0 +1,26 @@
+{
+  "name": "non-bdd",
+  "version": "1.0.0",
+  "description": "Cypress Non-BDD Framework",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --env allure=true",
+    "cy:run:chrome": "cypress run --headed --browser chrome",
+    "cy:run:firefox": "cypress run --headed --browser firefox",
+    "cy:dashboard": "cypress run --spec \"cypress/e2e/ui/*.cy.ts\" --headed --browser chrome --record --key edd48140-20fa-4323-aed8-ffababa6b865 --parallel --group \"UI Chrome\"",
+    "clear:reports": "rimraf cypress/reports/allure-results && rimraf cypress/reports/allure-reports",
+    "generate:reports": "allure generate cypress/reports/allure-results --clean -o cypress/reports/allure-reports",
+    "test": "yarn clear:reports && yarn cy:run && yarn generate:reports"
+  },
+  "author": "anhnguyent12@nashtechglobal.com",
+  "license": "ISC",
+  "dependencies": {
+    "@cypress/grep": "^3.1.5",
+    "@shelex/cypress-allure-plugin": "^2.40.0",
+    "allure-commandline": "^2.23.0",
+    "cypress": "^12.17.1",
+    "prettier": "^3.0.0",
+    "rimraf": "^5.0.1",
+    "typescript": "^5.1.6"
+  }
+}
